@@ -92,3 +92,14 @@ def z_corr(listx: list, listy: list) -> float:
 
     return correlation
 
+
+def cov(a, b):
+    if z_count(a) != z_count(b):
+        raise ValueError("The length of 'a' and 'b' must be equal.")
+
+    sum = 0
+    for i in range(z_count(a)):
+        sum += (a[i] - z_mean(a)) * (b[i] - z_mean(b))
+
+    covariance = sum / (z_count(a) - 1)
+    return covariance
